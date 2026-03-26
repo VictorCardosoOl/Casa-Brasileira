@@ -12,6 +12,11 @@ export default function Navbar() {
   const mobileMenuRef = useRef<HTMLDivElement>(null);
   const { scrollDirection, isAtTop } = useScrollDirection();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  
+  // State for active section tracking
+  const [activeSection, setActiveSection] = useState('home');
+  const [visibleLabel, setVisibleLabel] = useState<string | null>(null);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useGSAP(() => {
     const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
@@ -59,6 +64,40 @@ export default function Navbar() {
     }
   }, [isMobileMenuOpen]);
 
+  // Intersection Observer for active section
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      { threshold: 0.5 } // Trigger when 50% of the section is visible
+    );
+
+    const sections = ['home', 'concept', 'space', 'menu', 'chef'].map(id => document.getElementById(id));
+    sections.forEach(sec => sec && observer.observe(sec));
+
+    return () => {
+      sections.forEach(sec => sec && observer.unobserve(sec));
+    };
+  }, []);
+
+  // Show label temporarily when active section changes
+  useEffect(() => {
+    setVisibleLabel(activeSection);
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    timeoutRef.current = setTimeout(() => {
+      setVisibleLabel(null);
+    }, 2000); // Show for 2 seconds
+
+    return () => {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    };
+  }, [activeSection]);
+
   // Logic for visibility
   // Hide if scrolling down AND not at the top AND mobile menu is NOT open
   const isHidden = scrollDirection === 'down' && !isAtTop && !isMobileMenuOpen;
@@ -67,11 +106,11 @@ export default function Navbar() {
   const isScrolled = !isAtTop || isMobileMenuOpen;
 
   const menuItems = [
-    { num: '01', label: 'Home', href: '#home' },
-    { num: '02', label: 'Conceito', href: '#concept' },
-    { num: '03', label: 'Espaço', href: '#space' },
-    { num: '04', label: 'Menu', href: '#menu' },
-    { num: '05', label: 'Chef', href: '#chef' }
+    { num: '01', id: 'home', label: 'Home', href: '#home' },
+    { num: '02', id: 'concept', label: 'Conceito', href: '#concept' },
+    { num: '03', id: 'space', label: 'Espaço', href: '#space' },
+    { num: '04', id: 'menu', label: 'Menu', href: '#menu' },
+    { num: '05', id: 'chef', label: 'Chef', href: '#chef' }
   ];
 
   return (
@@ -93,7 +132,7 @@ export default function Navbar() {
           {/* Logo */}
           <div ref={logoRef} className={cn(
             "flex items-center gap-2 transition-colors duration-300 z-50 relative",
-            isScrolled ? "text-casa-accent" : "text-white"
+            isScrolled ? "text-casa-accent" : "text-casa-accent"
           )}>
             <a href="#home" className="font-serif text-2xl font-bold tracking-tighter cursor-pointer">
               CB.
@@ -128,18 +167,31 @@ export default function Navbar() {
 
       {/* Fixed Left Navigation (Desktop) */}
       <nav className="hidden md:flex fixed left-8 top-1/2 -translate-y-1/2 z-40 flex-col gap-8">
-        {menuItems.map((item) => (
-          <a 
-            key={item.num} 
-            href={item.href}
-            className="group flex items-center gap-4 text-casa-text-light hover:text-casa-accent transition-colors"
-          >
-            <span className="font-mono text-xs font-bold">{item.num}</span>
-            <span className="font-sans text-xs font-bold uppercase tracking-widest opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 absolute left-8 whitespace-nowrap bg-casa-cream/90 px-2 py-1 rounded">
-              {item.label}
-            </span>
-          </a>
-        ))}
+        {menuItems.map((item) => {
+          const isActive = activeSection === item.id;
+          const isVisible = visibleLabel === item.id;
+
+          return (
+            <a 
+              key={item.num} 
+              href={item.href}
+              className="group flex items-center gap-4 transition-colors"
+            >
+              <span className={cn(
+                "font-mono text-xs font-bold transition-colors duration-300",
+                isActive ? "text-casa-accent" : "text-casa-text-light group-hover:text-casa-accent"
+              )}>
+                {item.num}
+              </span>
+              <span className={cn(
+                "font-sans text-xs font-bold uppercase tracking-widest absolute left-8 whitespace-nowrap bg-casa-cream/90 px-2 py-1 rounded transition-all duration-500 ease-out",
+                isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0"
+              )}>
+                {item.label}
+              </span>
+            </a>
+          );
+        })}
       </nav>
 
       {/* Mobile Menu Overlay */}
