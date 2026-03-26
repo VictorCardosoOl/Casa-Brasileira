@@ -32,21 +32,25 @@ export default function MapSection() {
   const selectedData = DISTRICTS.find(d => d.id === selectedDistrict);
 
   return (
-    <section id="map" ref={containerRef} className="py-32 px-6 md:px-12 bg-casa-cream relative overflow-hidden">
-      <div className="max-w-screen-xl mx-auto flex flex-col items-center">
+    <section id="map" ref={containerRef} className="py-32 px-6 md:px-12 bg-casa-cream relative overflow-hidden border-t border-casa-text/10">
+      <div className="max-w-[1600px] mx-auto flex flex-col items-center relative z-10">
         
-        <div className="text-center mb-16">
-          <h2 className="font-serif text-4xl md:text-5xl text-casa-text mb-4">
-            Mapa de Inspirações
+        <div className="text-center mb-16 flex flex-col items-center gap-6">
+          <span className="font-sans text-[10px] uppercase tracking-[0.2em] text-casa-accent">
+            (NOSSA ORIGEM)
+          </span>
+          <h2 className="font-editorial text-[10vw] lg:text-[6vw] leading-[0.9] text-casa-text uppercase tracking-tight">
+            MAPA DE <br/>
+            INSPIRAÇÕES
           </h2>
-          <p className="text-casa-text-light font-light max-w-2xl mx-auto">
-            Explore o mapa abstrato das nossas raízes. Clique em um distrito para descobrir sua influência em nossa culinária.
+          <p className="font-sans text-[10px] uppercase tracking-[0.15em] text-casa-text-light leading-relaxed max-w-2xl mt-4">
+            EXPLORE O MAPA ABSTRATO DAS NOSSAS RAÍZES. CLIQUE EM UM DISTRITO PARA DESCOBRIR SUA INFLUÊNCIA EM NOSSA CULINÁRIA.
           </p>
         </div>
 
-        <div className="relative w-full max-w-4xl aspect-video bg-white/50 rounded-3xl border border-casa-pink-200/50 flex items-center justify-center p-4 md:p-12 shadow-sm">
+        <div className="relative w-full max-w-4xl aspect-video bg-casa-cream border border-casa-text/10 flex items-center justify-center p-4 md:p-12">
           
-          <svg viewBox="0 0 450 400" className="w-full h-full drop-shadow-sm overflow-visible">
+          <svg viewBox="0 0 450 400" className="w-full h-full overflow-visible">
             {DISTRICTS.map((district) => {
               const isSelected = selectedDistrict === district.id;
               return (
@@ -59,18 +63,18 @@ export default function MapSection() {
                     d={district.path}
                     className={`transition-all duration-300 ${
                       isSelected 
-                        ? 'fill-casa-accent/10 stroke-casa-accent stroke-[3]' 
-                        : 'fill-casa-cream stroke-casa-pink-200 stroke-[1.5] group-hover:fill-casa-pink-50 group-hover:stroke-casa-accent/50'
+                        ? 'fill-casa-accent/5 stroke-casa-accent stroke-[2]' 
+                        : 'fill-transparent stroke-casa-text/20 stroke-[1] group-hover:fill-casa-accent/5 group-hover:stroke-casa-accent/50'
                     }`}
                   />
                   <circle 
                     cx={district.cx} 
                     cy={district.cy} 
-                    r={isSelected ? "6" : "4"} 
+                    r={isSelected ? "4" : "3"} 
                     className={`transition-all duration-300 ${
                       isSelected 
                         ? 'fill-casa-accent' 
-                        : 'fill-casa-pink-200 group-hover:fill-casa-accent/50 group-hover:r-5'
+                        : 'fill-casa-text/20 group-hover:fill-casa-accent/50'
                     }`}
                   />
                 </g>
@@ -82,7 +86,7 @@ export default function MapSection() {
           {selectedDistrict && selectedData && (
             <div 
               ref={tooltipRef}
-              className="absolute z-10 bg-white px-5 py-4 rounded-2xl shadow-xl shadow-casa-pink-200/40 border border-casa-pink-100 flex items-center gap-4 pointer-events-none min-w-[200px]"
+              className="absolute z-10 bg-casa-cream px-6 py-4 border border-casa-text/10 flex items-center gap-4 pointer-events-none min-w-[200px]"
               style={{
                 left: `calc(${selectedData.cx / 450 * 100}%)`,
                 top: `calc(${selectedData.cy / 400 * 100}%)`,
@@ -90,16 +94,16 @@ export default function MapSection() {
                 marginTop: '-16px'
               }}
             >
-              <div className="w-10 h-10 rounded-full bg-casa-pink-50 flex items-center justify-center text-casa-accent shrink-0">
-                <MapPin size={20} />
+              <div className="w-8 h-8 rounded-full bg-casa-accent/10 flex items-center justify-center text-casa-accent shrink-0">
+                <MapPin size={16} />
               </div>
               <div>
-                <p className="text-[10px] font-bold uppercase tracking-widest text-casa-text-light mb-1">Distrito</p>
-                <p className="font-serif text-xl text-casa-text leading-none">{selectedData.name}</p>
+                <p className="text-[8px] font-sans font-medium uppercase tracking-[0.2em] text-casa-text-light mb-1">DISTRITO</p>
+                <p className="font-editorial text-xl text-casa-text leading-none uppercase tracking-tight">{selectedData.name}</p>
               </div>
               
               {/* Tooltip Arrow */}
-              <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-white border-b border-r border-casa-pink-100 rotate-45"></div>
+              <div className="absolute -bottom-[5px] left-1/2 -translate-x-1/2 w-2 h-2 bg-casa-cream border-b border-r border-casa-text/10 rotate-45"></div>
             </div>
           )}
 

@@ -17,7 +17,7 @@ export default function App() {
   return (
     <SmoothScrollWrapper>
       <Navbar />
-      <main className="bg-casa-cream min-h-screen selection:bg-casa-pink-200 selection:text-casa-accent">
+      <main className="bg-casa-cream min-h-screen selection:bg-casa-accent/20 selection:text-casa-accent">
         <Hero />
         <CulinaryConcept />
         <TheSpace />

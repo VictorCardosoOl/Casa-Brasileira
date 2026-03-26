@@ -26,29 +26,29 @@ export default function Footer() {
         <div className="flex flex-col justify-between h-full">
           <div className="flex flex-col gap-10">
             <nav className="flex flex-col gap-5">
-              <a href="#about" className="font-sans font-medium uppercase tracking-[0.1em] text-[#2B3A4A] text-xs hover:text-[#5C3D2E] transition-colors">
+              <a href="#concept" className="font-sans font-medium uppercase tracking-[0.2em] text-[#2B3A4A] text-[10px] hover:text-[#5C3D2E] transition-colors">
                 Sobre nós
               </a>
-              <a href="#menu" className="font-sans font-medium uppercase tracking-[0.1em] text-[#2B3A4A] text-xs hover:text-[#5C3D2E] transition-colors">
+              <a href="#menu" className="font-sans font-medium uppercase tracking-[0.2em] text-[#2B3A4A] text-[10px] hover:text-[#5C3D2E] transition-colors">
                 Menu
               </a>
-              <a href="#contact" className="font-sans font-medium uppercase tracking-[0.1em] text-[#2B3A4A] text-xs hover:text-[#5C3D2E] transition-colors">
+              <a href="#contact" className="font-sans font-medium uppercase tracking-[0.2em] text-[#2B3A4A] text-[10px] hover:text-[#5C3D2E] transition-colors">
                 Contatos
               </a>
             </nav>
             
             <div className="flex gap-4">
-              <a href="#" className="w-12 h-12 rounded-full bg-[#5C3D2E] flex items-center justify-center text-white hover:bg-[#4A3125] transition-all">
-                <Instagram className="w-5 h-5" />
+              <a href="#" className="w-12 h-12 rounded-full border border-[#2B3A4A]/20 flex items-center justify-center text-[#2B3A4A] hover:bg-[#5C3D2E] hover:text-white hover:border-[#5C3D2E] transition-all">
+                <Instagram className="w-4 h-4" />
               </a>
-              <a href="#" className="w-12 h-12 rounded-full bg-[#5C3D2E] flex items-center justify-center text-white hover:bg-[#4A3125] transition-all">
-                <Send className="w-5 h-5 -ml-1" />
+              <a href="#" className="w-12 h-12 rounded-full border border-[#2B3A4A]/20 flex items-center justify-center text-[#2B3A4A] hover:bg-[#5C3D2E] hover:text-white hover:border-[#5C3D2E] transition-all">
+                <Send className="w-4 h-4 -ml-1" />
               </a>
             </div>
           </div>
 
           <div className="mt-32 md:mt-auto pb-20">
-            <h3 className="font-sans font-bold uppercase tracking-[0.05em] text-[#2B3A4A] text-2xl md:text-3xl leading-snug">
+            <h3 className="font-editorial uppercase tracking-tight text-[#2B3A4A] text-4xl md:text-5xl leading-none">
               COM ALEGRIA<br />
               ESPERAMOS SUA VISITA!
             </h3>
@@ -59,10 +59,10 @@ export default function Footer() {
         <div className="flex flex-col justify-start md:items-end w-full">
           <div className="w-full max-w-md flex flex-col gap-8">
             <div className="flex flex-col gap-4">
-              <h3 className="font-sans font-bold text-[#2B3A4A] uppercase tracking-[0.05em] text-2xl md:text-3xl">
+              <h3 className="font-editorial text-[#2B3A4A] uppercase tracking-tight text-3xl md:text-4xl">
                 Ficou alguma dúvida?
               </h3>
-              <p className="font-sans text-[11px] md:text-xs uppercase tracking-[0.1em] text-[#2B3A4A]/70 leading-relaxed">
+              <p className="font-sans text-[10px] md:text-[11px] uppercase tracking-[0.2em] text-[#2B3A4A]/70 leading-relaxed">
                 Teremos o prazer em responder a cada uma delas.<br/>Fale conosco!
               </p>
             </div>
@@ -71,21 +71,21 @@ export default function Footer() {
               <input 
                 type="text" 
                 placeholder="SEU NOME" 
-                className="w-full bg-transparent border-b border-[#2B3A4A]/40 pb-3 text-xs focus:outline-none focus:border-[#2B3A4A] placeholder:text-[#2B3A4A]/60 uppercase tracking-[0.1em] text-[#2B3A4A] transition-colors"
+                className="w-full bg-transparent border-b border-[#2B3A4A]/40 pb-3 text-[10px] focus:outline-none focus:border-[#2B3A4A] placeholder:text-[#2B3A4A]/60 uppercase tracking-[0.2em] text-[#2B3A4A] transition-colors"
               />
               <input 
                 type="tel" 
                 placeholder="NÚMERO DE TELEFONE" 
-                className="w-full bg-transparent border-b border-[#2B3A4A]/40 pb-3 text-xs focus:outline-none focus:border-[#2B3A4A] placeholder:text-[#2B3A4A]/60 uppercase tracking-[0.1em] text-[#2B3A4A] transition-colors"
+                className="w-full bg-transparent border-b border-[#2B3A4A]/40 pb-3 text-[10px] focus:outline-none focus:border-[#2B3A4A] placeholder:text-[#2B3A4A]/60 uppercase tracking-[0.2em] text-[#2B3A4A] transition-colors"
               />
               <input 
                 type="text" 
                 placeholder="SUA DÚVIDA/COMENTÁRIO" 
-                className="w-full bg-transparent border-b border-[#2B3A4A]/40 pb-3 text-xs focus:outline-none focus:border-[#2B3A4A] placeholder:text-[#2B3A4A]/60 uppercase tracking-[0.1em] text-[#2B3A4A] transition-colors"
+                className="w-full bg-transparent border-b border-[#2B3A4A]/40 pb-3 text-[10px] focus:outline-none focus:border-[#2B3A4A] placeholder:text-[#2B3A4A]/60 uppercase tracking-[0.2em] text-[#2B3A4A] transition-colors"
               />
               <button 
                 type="button"
-                className="mt-4 w-full bg-[#5C3D2E] text-white text-xs font-bold uppercase tracking-[0.15em] py-4 rounded-full hover:bg-[#4A3125] transition-colors"
+                className="mt-4 w-fit bg-[#5C3D2E] text-white text-[10px] font-medium uppercase tracking-[0.2em] py-4 px-12 hover:bg-[#4A3125] transition-colors"
               >
                 Enviar
               </button>

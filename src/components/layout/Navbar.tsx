@@ -119,47 +119,46 @@ export default function Navbar() {
       <nav
         ref={navRef}
         className={cn(
-          "fixed top-0 left-0 w-full z-50 transition-all duration-300 ease-in-out px-6 md:px-12",
+          "fixed top-0 left-0 w-full z-50 transition-all duration-300 ease-in-out px-6 md:px-12 border-b border-casa-text/10",
           // Visibility Class
           isHidden ? "-translate-y-full" : "translate-y-0",
           // Style Class
           isScrolled 
-            ? "bg-casa-cream/90 backdrop-blur-md shadow-sm py-4" 
-            : "bg-transparent py-8"
+            ? "bg-casa-cream/95 backdrop-blur-md shadow-sm py-4" 
+            : "bg-casa-cream py-6"
         )}
       >
-        <div className="w-full mx-auto flex items-center justify-between">
-          {/* Logo */}
-          <div ref={logoRef} className={cn(
-            "flex items-center gap-2 transition-colors duration-300 z-50 relative",
-            isScrolled ? "text-casa-accent" : "text-casa-accent"
-          )}>
-            <a href="#home" className="font-serif text-2xl font-bold tracking-tighter cursor-pointer">
-              CB.
-            </a>
+        <div className="w-full mx-auto grid grid-cols-3 items-center">
+          
+          {/* Left: Location & Status */}
+          <div className="hidden md:flex items-center gap-4 text-[10px] font-sans font-medium tracking-[0.2em] text-casa-text-light uppercase">
+            <span>SÃO PAULO</span>
+            <span className="w-8 h-[1px] bg-casa-text-light/30"></span>
+            <span className="text-casa-accent">12:51, OPEN</span>
           </div>
 
-          {/* Navigation Actions */}
-          <div ref={linksRef} className="flex items-center gap-6">
-            {/* Mobile Menu Toggle */}
+          {/* Center: Logo */}
+          <div ref={logoRef} className="col-span-2 md:col-span-1 flex flex-col items-center justify-center transition-colors duration-300 z-50 relative">
+            <a href="#home" className="font-editorial text-2xl md:text-3xl font-medium tracking-widest text-casa-text uppercase">
+              CASA BRASILEIRA
+            </a>
+            <span className="font-sans text-[8px] tracking-[0.3em] text-casa-text-light uppercase mt-1">
+              Restaurant & Bar
+            </span>
+          </div>
+
+          {/* Right: Navigation Actions */}
+          <div ref={linksRef} className="flex items-center justify-end gap-8">
+            <span className="hidden md:block text-[10px] font-sans font-medium tracking-[0.2em] text-casa-text-light uppercase cursor-pointer hover:text-casa-accent transition-colors">
+              PORTUGUÊS
+            </span>
+            
             <button 
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className={cn(
-                "md:hidden p-2 hover:opacity-70 transition-colors duration-300 z-50 relative",
-                isScrolled ? "text-casa-accent" : "text-casa-accent"
-              )}
+              className="flex items-center gap-3 text-[10px] font-sans font-medium tracking-[0.2em] text-casa-text uppercase hover:text-casa-accent transition-colors z-50 relative"
             >
-              {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
-
-            {/* CTA Button */}
-            <button className={cn(
-              "hidden md:block px-6 py-2 border text-xs font-bold uppercase tracking-widest rounded-full transition-all duration-300",
-              isScrolled 
-                ? "border-casa-accent text-casa-accent hover:bg-casa-accent hover:text-white"
-                : "border-casa-accent text-casa-accent hover:bg-casa-accent hover:text-white"
-            )}>
-              Reservar
+              <span className="hidden md:block">{isMobileMenuOpen ? 'FECHAR' : 'MENU'}</span>
+              <div className="w-2.5 h-2.5 rounded-full bg-casa-accent"></div>
             </button>
           </div>
         </div>
@@ -178,13 +177,13 @@ export default function Navbar() {
               className="group flex items-center gap-4 transition-colors"
             >
               <span className={cn(
-                "font-mono text-xs font-bold transition-colors duration-300",
-                isActive ? "text-casa-accent" : "text-casa-text-light group-hover:text-casa-accent"
+                "font-sans text-[10px] font-medium tracking-widest transition-colors duration-300",
+                isActive ? "text-casa-accent" : "text-casa-text-light/50 group-hover:text-casa-accent"
               )}>
                 {item.num}
               </span>
               <span className={cn(
-                "font-sans text-xs font-bold uppercase tracking-widest absolute left-8 whitespace-nowrap bg-casa-cream/90 px-2 py-1 rounded transition-all duration-500 ease-out",
+                "font-sans text-[10px] font-medium uppercase tracking-widest absolute left-8 whitespace-nowrap bg-casa-cream/90 px-2 py-1 rounded transition-all duration-500 ease-out",
                 isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0"
               )}>
                 {item.label}
@@ -205,15 +204,15 @@ export default function Navbar() {
             <a 
               key={item.num} 
               href={item.href} 
-              className="mobile-link flex items-center gap-4 font-serif text-3xl text-casa-text hover:text-casa-accent transition-colors"
+              className="mobile-link flex items-center gap-4 font-editorial text-3xl text-casa-text hover:text-casa-accent transition-colors"
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              <span className="font-mono text-lg text-casa-accent">{item.num}</span>
+              <span className="font-sans text-sm tracking-widest text-casa-accent">{item.num}</span>
               {item.label}
             </a>
           ))}
           <button 
-            className="mobile-link mt-8 px-8 py-3 bg-casa-accent text-white rounded-full font-sans text-sm font-bold uppercase tracking-widest"
+            className="mobile-link mt-8 px-8 py-3 bg-casa-accent text-white rounded-full font-sans text-xs font-bold uppercase tracking-widest"
             onClick={() => setIsMobileMenuOpen(false)}
           >
             Reservar Mesa

@@ -1,30 +1,29 @@
-@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&family=Nothing+You+Could+Do&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-serif: "Playfair Display", ui-serif, Georgia, serif;
-  --font-editorial: "Instrument Serif", ui-serif, Georgia, serif;
-  --font-script: "Nothing You Could Do", cursive;
+  --font-sans: "Montserrat", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Cormorant Garamond", ui-serif, Georgia, serif;
+  --font-editorial: "Cormorant Garamond", ui-serif, Georgia, serif;
 
-  /* Paleta "Awards Light" - Elegante, Clara e Sofisticada */
+  /* Paleta VISEVERSA - Minimalista, Elegante e Terrosa */
   
-  /* Base: Creme Off-White (Papel de alta gramatura) */
-  --color-casa-cream: #FDFBF7; 
+  /* Base: Creme Off-White */
+  --color-casa-cream: #F4F3EE; 
   
-  /* Tons de Rosa/Vinho (Suaves e Elegantes) */
-  --color-casa-pink-50: #FCF9F9;  /* Blush muito suave */
-  --color-casa-pink-100: #F5EBEB; /* Rosa Pálido */
-  --color-casa-pink-200: #E6D0D3; /* Rosa Acinzentado */
-  --color-casa-pink-300: #D4AAB1; /* Rosa Acento Suave */
+  /* Tons de Fundo (Suaves e Elegantes) */
+  --color-casa-pink-50: #F4F3EE;  /* Creme */
+  --color-casa-pink-100: #EAE8E3; /* Creme escuro */
+  --color-casa-pink-200: #DFDCD5; /* Cinza quente */
+  --color-casa-pink-300: #D4D1C9; /* Cinza quente escuro */
   
-  /* Acentos "Vinho" (Sofisticados e maduros) */
-  --color-casa-accent: #983546; /* Vinho Elegante */
-  --color-casa-accent-hover: #732532; /* Vinho Escuro */
+  /* Acentos "Laranja Queimado" (Sofisticados e maduros) */
+  --color-casa-accent: #D96C31; /* Laranja Queimado / Terracota */
+  --color-casa-accent-hover: #B85A27; /* Laranja Escuro */
   
   /* Tipografia (Alto Contraste e Legibilidade) */
-  --color-casa-text: #1C1917; /* Stone 900 (Quase preto, suave) */
-  --color-casa-text-light: #57534E; /* Stone 600 (Cinza quente) */
+  --color-casa-text: #1A1A1A; /* Quase preto */
+  --color-casa-text-light: #4A4A4A; /* Cinza escuro */
 
   /* Dark Premium Footer Palette (Stone) - Mantido para o Footer específico */
   --color-stone-950: #0c0a09;
