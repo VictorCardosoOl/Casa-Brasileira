@@ -140,7 +140,7 @@ export default function MenuSection() {
     <section id="menu" ref={containerRef} className="py-32 px-6 md:pl-32 md:pr-12 bg-casa-cream relative overflow-hidden">
       {/* Massive Background Text */}
       <div className="absolute top-32 left-1/2 -translate-x-1/2 w-full text-center z-0 pointer-events-none">
-        <h2 className="font-serif text-[22vw] leading-[0.8] text-casa-accent/5 tracking-tighter whitespace-nowrap">
+        <h2 className="font-editorial text-[22vw] leading-[0.8] text-casa-accent/5 tracking-tighter whitespace-nowrap">
           MENU
         </h2>
       </div>
@@ -161,7 +161,7 @@ export default function MenuSection() {
             >
               {cat.label}
               {activeCategory === cat.id && (
-                <span className="absolute -bottom-[17px] left-0 w-full h-[2px] bg-casa-accent" />
+                <span className="absolute -bottom-[17px] left-0 w-full h-[1px] bg-casa-accent" />
               )}
             </button>
           ))}
@@ -209,7 +209,7 @@ export default function MenuSection() {
                 </div>
 
                 {/* Central Image */}
-                <div ref={imageRef} className="lg:col-span-4 relative aspect-square rounded-full overflow-hidden shadow-2xl shadow-casa-pink-200/50 border-8 border-casa-cream z-10 order-1 lg:order-2">
+                <div ref={imageRef} className="lg:col-span-4 relative aspect-[3/4] rounded-t-full rounded-b-full overflow-hidden shadow-2xl shadow-casa-pink-200/50 border-8 border-casa-cream z-10 order-1 lg:order-2">
                   <img 
                     src={WEEKLY_MENU[activeDay].image} 
                     alt={WEEKLY_MENU[activeDay].dish}

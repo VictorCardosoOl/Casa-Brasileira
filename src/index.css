@@ -12,15 +12,15 @@
   /* Base: Creme Off-White (Papel de alta gramatura) */
   --color-casa-cream: #FDFBF7; 
   
-  /* Tons de Rosa "Drink" (Suaves e Elegantes) */
-  --color-casa-pink-50: #FFF5F7;  /* Blush muito suave */
-  --color-casa-pink-100: #FCE7F3; /* Rosa Pálido */
-  --color-casa-pink-200: #FBCFE8; /* Rosa Drink */
-  --color-casa-pink-300: #F472B6; /* Rosa Acento Suave */
+  /* Tons de Rosa/Vinho (Suaves e Elegantes) */
+  --color-casa-pink-50: #FCF9F9;  /* Blush muito suave */
+  --color-casa-pink-100: #F5EBEB; /* Rosa Pálido */
+  --color-casa-pink-200: #E6D0D3; /* Rosa Acinzentado */
+  --color-casa-pink-300: #D4AAB1; /* Rosa Acento Suave */
   
-  /* Acentos "Candy" (Vibrantes mas controlados) */
-  --color-casa-accent: #DB2777; /* Magenta Principal */
-  --color-casa-accent-hover: #BE185D; /* Magenta Escuro */
+  /* Acentos "Vinho" (Sofisticados e maduros) */
+  --color-casa-accent: #983546; /* Vinho Elegante */
+  --color-casa-accent-hover: #732532; /* Vinho Escuro */
   
   /* Tipografia (Alto Contraste e Legibilidade) */
   --color-casa-text: #1C1917; /* Stone 900 (Quase preto, suave) */
