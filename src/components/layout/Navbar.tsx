@@ -67,14 +67,16 @@ export default function Navbar() {
   const isScrolled = !isAtTop || isMobileMenuOpen;
 
   const menuItems = [
-    { label: 'Conceito', href: '#concept' },
-    { label: 'Espaço', href: '#space' },
-    { label: 'Menu', href: '#menu' },
-    { label: 'Chef', href: '#chef' }
+    { num: '01', label: 'Home', href: '#home' },
+    { num: '02', label: 'Conceito', href: '#concept' },
+    { num: '03', label: 'Espaço', href: '#space' },
+    { num: '04', label: 'Menu', href: '#menu' },
+    { num: '05', label: 'Chef', href: '#chef' }
   ];
 
   return (
     <>
+      {/* Top Bar */}
       <nav
         ref={navRef}
         className={cn(
@@ -93,29 +95,13 @@ export default function Navbar() {
             "flex items-center gap-2 transition-colors duration-300 z-50 relative",
             isScrolled ? "text-casa-accent" : "text-white"
           )}>
-            <span className="font-serif text-2xl font-bold tracking-tighter cursor-pointer">
+            <a href="#home" className="font-serif text-2xl font-bold tracking-tighter cursor-pointer">
               CB.
-            </span>
+            </a>
           </div>
 
-          {/* Navigation Links & Actions */}
+          {/* Navigation Actions */}
           <div ref={linksRef} className="flex items-center gap-6">
-            {/* Desktop Menu */}
-            <div className={cn(
-              "hidden md:flex items-center gap-8 font-sans text-xs font-bold uppercase tracking-widest transition-colors duration-300",
-              isScrolled ? "text-casa-text" : "text-casa-accent"
-            )}>
-              {menuItems.map((item) => (
-                <a 
-                  key={item.label} 
-                  href={item.href} 
-                  className="hover:opacity-70 transition-opacity"
-                >
-                  {item.label}
-                </a>
-              ))}
-            </div>
-            
             {/* Mobile Menu Toggle */}
             <button 
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -140,6 +126,22 @@ export default function Navbar() {
         </div>
       </nav>
 
+      {/* Fixed Left Navigation (Desktop) */}
+      <nav className="hidden md:flex fixed left-8 top-1/2 -translate-y-1/2 z-40 flex-col gap-8">
+        {menuItems.map((item) => (
+          <a 
+            key={item.num} 
+            href={item.href}
+            className="group flex items-center gap-4 text-casa-text-light hover:text-casa-accent transition-colors"
+          >
+            <span className="font-mono text-xs font-bold">{item.num}</span>
+            <span className="font-sans text-xs font-bold uppercase tracking-widest opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 absolute left-8 whitespace-nowrap bg-casa-cream/90 px-2 py-1 rounded">
+              {item.label}
+            </span>
+          </a>
+        ))}
+      </nav>
+
       {/* Mobile Menu Overlay */}
       <div 
         ref={mobileMenuRef}
@@ -149,16 +151,17 @@ export default function Navbar() {
         <div className="flex flex-col items-center gap-8">
           {menuItems.map((item) => (
             <a 
-              key={item.label} 
+              key={item.num} 
               href={item.href} 
-              className="mobile-link font-serif text-3xl text-casa-accent hover:opacity-70 transition-opacity"
+              className="mobile-link flex items-center gap-4 font-serif text-3xl text-casa-text hover:text-casa-accent transition-colors"
               onClick={() => setIsMobileMenuOpen(false)}
             >
+              <span className="font-mono text-lg text-casa-accent">{item.num}</span>
               {item.label}
             </a>
           ))}
           <button 
-            className="mobile-link mt-8 px-8 py-3 border border-casa-accent text-casa-accent rounded-full font-sans text-sm font-bold uppercase tracking-widest hover:bg-casa-accent hover:text-white transition-colors"
+            className="mobile-link mt-8 px-8 py-3 bg-casa-accent text-white rounded-full font-sans text-sm font-bold uppercase tracking-widest"
             onClick={() => setIsMobileMenuOpen(false)}
           >
             Reservar Mesa

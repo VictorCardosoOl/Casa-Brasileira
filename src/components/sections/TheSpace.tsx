@@ -1,6 +1,5 @@
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useRef } from 'react';
 
 export default function TheSpace() {
@@ -34,8 +33,15 @@ export default function TheSpace() {
   }, { scope: containerRef });
 
   return (
-    <section id="space" ref={containerRef} className="py-32 px-6 md:px-12 bg-casa-pink-50 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+    <section id="space" ref={containerRef} className="py-32 px-6 md:pl-32 md:pr-12 bg-casa-pink-50 relative overflow-hidden">
+      {/* Massive Background Text */}
+      <div className="absolute top-20 left-1/2 -translate-x-1/2 w-full text-center z-0 pointer-events-none">
+        <h2 className="font-serif text-[18vw] leading-[0.8] text-casa-accent/5 tracking-tighter whitespace-nowrap">
+          ESPAÇO
+        </h2>
+      </div>
+
+      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative z-10 mt-24">
         
         {/* Text Side */}
         <div ref={textRef} className="flex flex-col gap-8">
@@ -87,10 +93,6 @@ export default function TheSpace() {
         </div>
 
       </div>
-      
-      {/* Decorative Elements */}
-      <div className="absolute -top-32 -right-32 w-96 h-96 bg-casa-pink-100 rounded-full blur-[80px] -z-10 opacity-50" />
-      <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-casa-cream to-transparent pointer-events-none" />
     </section>
   );
 }

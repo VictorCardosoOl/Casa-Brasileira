@@ -1,8 +1,7 @@
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Quote } from 'lucide-react';
 import { useRef } from 'react';
+import { Quote } from 'lucide-react';
 
 export default function ChefTayna() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -35,21 +34,28 @@ export default function ChefTayna() {
   }, { scope: containerRef });
 
   return (
-    <section id="chef" ref={containerRef} className="py-32 px-6 md:px-12 bg-casa-text text-casa-cream relative overflow-hidden">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+    <section id="chef" ref={containerRef} className="py-32 px-6 md:pl-32 md:pr-12 bg-casa-cream relative overflow-hidden">
+      {/* Massive Background Text */}
+      <div className="absolute top-20 left-1/2 -translate-x-1/2 w-full text-center z-0 pointer-events-none">
+        <h2 className="font-serif text-[18vw] leading-[0.8] text-casa-accent/5 tracking-tighter whitespace-nowrap">
+          CHEF TAYNA
+        </h2>
+      </div>
+
+      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24 items-center relative z-10 mt-24">
         
         {/* Image Side - Artistic Portrait */}
-        <div ref={imageRef} className="relative aspect-[3/4] md:aspect-[4/5] rounded-[2rem] overflow-hidden shadow-2xl shadow-casa-accent/20 group order-2 lg:order-1">
+        <div ref={imageRef} className="relative aspect-[3/4] md:aspect-[4/5] rounded-[2rem] overflow-hidden shadow-2xl shadow-casa-pink-200/50 group order-2 lg:order-1">
           <img 
             src="https://images.unsplash.com/photo-1583394293214-28ded15ee548?q=80&w=2680&auto=format&fit=crop" 
             alt="Chef Tayna Cristina" 
             className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 ease-in-out"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-casa-text via-transparent to-transparent opacity-80" />
+          <div className="absolute inset-0 bg-gradient-to-t from-casa-cream/50 via-transparent to-transparent opacity-80" />
           
           {/* Signature Overlay */}
           <div className="absolute bottom-12 left-12">
-            <span className="font-serif text-6xl text-casa-accent opacity-50 mix-blend-screen italic">Tayna</span>
+            <span className="font-serif text-6xl text-casa-accent opacity-50 mix-blend-multiply italic">Tayna</span>
           </div>
         </div>
 
@@ -60,19 +66,19 @@ export default function ChefTayna() {
             <span className="font-serif italic text-xl tracking-wide">Sobre Mim</span>
           </div>
 
-          <h2 className="font-serif text-5xl md:text-6xl lg:text-7xl text-casa-cream leading-[1.1]">
+          <h2 className="font-serif text-5xl md:text-6xl lg:text-7xl text-casa-text leading-[1.1]">
             Cozinhar é um ato de <br/>
             <span className="text-casa-accent italic">amor.</span>
           </h2>
 
           <div className="relative pl-8 border-l border-casa-accent/30">
-            <Quote className="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-8 h-8 text-casa-accent bg-casa-text p-1" />
-            <p className="font-sans text-xl text-casa-pink-100 leading-relaxed font-light italic">
+            <Quote className="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-8 h-8 text-casa-accent bg-casa-cream p-1" />
+            <p className="font-sans text-xl text-casa-text-light leading-relaxed font-light italic">
               "Minha cozinha é uma extensão da minha casa. É onde misturo as memórias da infância com a técnica que aprendi pelo mundo. Cada prato conta uma história, e eu quero que você faça parte dela."
             </p>
           </div>
 
-          <div className="prose prose-lg text-gray-400 font-light leading-relaxed">
+          <div className="prose prose-lg text-casa-text-light font-light leading-relaxed">
             <p>
               Formada em Gastronomia e apaixonada pelas raízes brasileiras, Tayna Cristina transformou o conceito de "prato feito" em uma experiência sensorial. 
             </p>
@@ -85,15 +91,12 @@ export default function ChefTayna() {
             <img 
               src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Signature_sample.svg" 
               alt="Assinatura Tayna" 
-              className="h-16 opacity-50 invert" 
+              className="h-16 opacity-50" 
             />
           </div>
         </div>
 
       </div>
-      
-      {/* Background Texture */}
-      <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-10 pointer-events-none" />
     </section>
   );
 }

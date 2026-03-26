@@ -137,35 +137,32 @@ export default function MenuSection() {
   );
 
   return (
-    <section id="menu" ref={containerRef} className="py-32 px-6 md:px-12 bg-casa-cream relative overflow-hidden">
-      <div className="max-w-screen-2xl mx-auto">
-        
-        {/* Header */}
-        <div className="text-center mb-16 relative z-10">
-          <span className="text-casa-accent font-medium tracking-[0.2em] uppercase text-xs mb-4 block">
-            Nossa Cozinha
-          </span>
-          <h2 className="font-serif text-5xl md:text-6xl text-casa-text leading-tight mb-6">
-            Cardápio
-          </h2>
-          <p className="text-casa-text-light max-w-2xl mx-auto text-lg font-light leading-relaxed">
-            A tradição brasileira reinventada com técnica e ingredientes premium. Dos pratos do dia aos grandes clássicos.
-          </p>
-        </div>
+    <section id="menu" ref={containerRef} className="py-32 px-6 md:pl-32 md:pr-12 bg-casa-cream relative overflow-hidden">
+      {/* Massive Background Text */}
+      <div className="absolute top-32 left-1/2 -translate-x-1/2 w-full text-center z-0 pointer-events-none">
+        <h2 className="font-serif text-[22vw] leading-[0.8] text-casa-accent/5 tracking-tighter whitespace-nowrap">
+          MENU
+        </h2>
+      </div>
 
+      <div className="max-w-screen-2xl mx-auto relative z-10">
+        
         {/* Category Navigation */}
-        <div className="flex flex-wrap justify-center gap-4 md:gap-8 mb-20">
+        <div className="flex flex-wrap justify-center gap-6 md:gap-12 mb-16 border-b border-casa-pink-200/50 pb-4">
           {CATEGORIES.map((cat) => (
             <button
               key={cat.id}
               onClick={() => setActiveCategory(cat.id)}
-              className={`text-sm font-bold uppercase tracking-widest pb-2 border-b-2 transition-all duration-300 ${
+              className={`text-sm md:text-base font-serif italic transition-all duration-300 relative ${
                 activeCategory === cat.id 
-                  ? 'border-casa-accent text-casa-accent' 
-                  : 'border-transparent text-casa-text-light hover:text-casa-text'
+                  ? 'text-casa-accent' 
+                  : 'text-casa-text-light hover:text-casa-text'
               }`}
             >
               {cat.label}
+              {activeCategory === cat.id && (
+                <span className="absolute -bottom-[17px] left-0 w-full h-[2px] bg-casa-accent" />
+              )}
             </button>
           ))}
         </div>
@@ -173,91 +170,68 @@ export default function MenuSection() {
         {/* Content Area */}
         <div className="min-h-[600px]">
           
-          {/* PRATOS DO DIA (Layout Especial com Imagem) */}
+          {/* PRATOS DO DIA (Layout Especial com Imagem Central) */}
           {activeCategory === 'diario' && (
-            <div className="flex flex-col lg:flex-row gap-16 items-start">
-              {/* Navigation (Tabs) - Minimalist List */}
-              <div className="lg:w-1/3 flex flex-col w-full border-l border-casa-pink-200 pl-8 relative">
-                {/* Active Indicator Line */}
-                <div 
-                  className="absolute left-[-1px] w-[3px] bg-casa-accent transition-all duration-300 ease-in-out"
-                  style={{ 
-                    height: '4rem', 
-                    top: `calc(${activeDay * 5.5}rem + 1.5rem)` 
-                  }}
-                />
-
-                {WEEKLY_MENU.map((item, index) => (
-                  <button
-                    key={item.id}
-                    onClick={() => setActiveDay(index)}
-                    className={`group flex items-center justify-between py-6 pr-4 transition-all duration-300 text-left w-full ${
-                      activeDay === index 
-                        ? 'pl-4' 
-                        : 'hover:pl-2 opacity-60 hover:opacity-100'
-                    }`}
-                  >
-                    <div>
-                      <span className={`text-xs font-bold uppercase tracking-widest block mb-1 transition-colors ${
-                        activeDay === index ? 'text-casa-accent' : 'text-casa-text-light'
-                      }`}>
-                        {item.day}
-                      </span>
-                      <span className={`font-serif text-2xl transition-colors ${
-                        activeDay === index ? 'text-casa-text' : 'text-casa-text/80'
-                      }`}>
-                        {item.dish}
-                      </span>
-                    </div>
-                  </button>
-                ))}
+            <div className="flex flex-col items-center">
+              
+              {/* Day Selector */}
+              <div className="flex flex-wrap justify-center gap-4 mb-12">
+                 {WEEKLY_MENU.map((item, index) => (
+                    <button
+                      key={item.id}
+                      onClick={() => setActiveDay(index)}
+                      className={`text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full transition-colors ${
+                        activeDay === index ? 'bg-casa-accent text-white' : 'bg-casa-pink-50 text-casa-text-light hover:bg-casa-pink-100'
+                      }`}
+                    >
+                      {item.day.split('-')[0]}
+                    </button>
+                 ))}
               </div>
 
-              {/* Content Display - Editorial Style */}
-              <div className="lg:w-2/3 w-full relative">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-                  
-                  {/* Image Side */}
-                  <div ref={imageRef} className="relative aspect-[4/5] rounded-[2rem] overflow-hidden shadow-2xl shadow-casa-pink-200/50 group">
-                    <img 
-                      src={WEEKLY_MENU[activeDay].image} 
-                      alt={WEEKLY_MENU[activeDay].dish}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-casa-text/30 to-transparent mix-blend-multiply" />
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center w-full">
+                
+                {/* Left Text */}
+                <div ref={contentRef} className="lg:col-span-4 flex flex-col gap-6 text-center lg:text-left order-2 lg:order-1">
+                  <h3 className="font-serif text-4xl md:text-5xl text-casa-text leading-tight">
+                    {WEEKLY_MENU[activeDay].dish}
+                  </h3>
+                  <p className="text-casa-text-light leading-relaxed text-lg font-light">
+                    {WEEKLY_MENU[activeDay].description}
+                  </p>
+                  <div className="flex flex-wrap gap-2 justify-center lg:justify-start">
+                    {WEEKLY_MENU[activeDay].tags.map(tag => (
+                      <span key={tag} className="px-3 py-1 bg-casa-pink-50 text-casa-accent text-xs font-bold uppercase tracking-wide rounded-full">
+                        {tag}
+                      </span>
+                    ))}
                   </div>
-
-                  {/* Details Side */}
-                  <div ref={contentRef} className="flex flex-col justify-center">
-                    <div className="flex gap-2 mb-8">
-                      {WEEKLY_MENU[activeDay].tags.map(tag => (
-                        <span key={tag} className="px-4 py-1 border border-casa-pink-200 text-casa-accent text-xs font-bold uppercase tracking-wide rounded-full">
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-
-                    <h3 className="font-serif text-4xl text-casa-text mb-6 leading-tight">
-                      {WEEKLY_MENU[activeDay].dish}
-                    </h3>
-                    
-                    <p className="text-casa-text-light leading-relaxed mb-10 text-lg font-light">
-                      {WEEKLY_MENU[activeDay].description}
-                    </p>
-
-                    <div className="flex items-center justify-between border-t border-casa-pink-100 pt-8">
-                      <div className="flex items-center gap-3 text-casa-text-light">
-                        <Clock className="w-5 h-5 text-casa-accent" />
-                        <span className="text-sm font-medium tracking-wide">11h30 — 15h</span>
-                      </div>
-                      <button className="group flex items-center gap-2 text-casa-accent font-bold text-sm uppercase tracking-widest hover:text-casa-accent-hover transition-colors">
-                        Reservar
-                        <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-                      </button>
-                    </div>
-                  </div>
-
                 </div>
+
+                {/* Central Image */}
+                <div ref={imageRef} className="lg:col-span-4 relative aspect-square rounded-full overflow-hidden shadow-2xl shadow-casa-pink-200/50 border-8 border-casa-cream z-10 order-1 lg:order-2">
+                  <img 
+                    src={WEEKLY_MENU[activeDay].image} 
+                    alt={WEEKLY_MENU[activeDay].dish}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+
+                {/* Right Info */}
+                <div className="lg:col-span-4 flex flex-col gap-8 text-center lg:text-left order-3">
+                  <div>
+                    <span className="text-xs font-bold uppercase tracking-widest text-casa-accent mb-2 block">Horário</span>
+                    <p className="font-serif text-xl text-casa-text">11h30 — 15h00</p>
+                  </div>
+                  <div>
+                    <span className="text-xs font-bold uppercase tracking-widest text-casa-accent mb-2 block">Disponibilidade</span>
+                    <p className="font-serif text-xl text-casa-text">Apenas {WEEKLY_MENU[activeDay].day}</p>
+                  </div>
+                   <button className="w-fit mx-auto lg:mx-0 px-8 py-3 bg-casa-text text-white rounded-full font-sans text-sm font-bold uppercase tracking-widest hover:bg-casa-accent transition-colors">
+                    Reservar Mesa
+                  </button>
+                </div>
+
               </div>
             </div>
           )}
