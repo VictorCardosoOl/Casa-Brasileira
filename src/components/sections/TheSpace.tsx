@@ -1,11 +1,22 @@
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
+
+const SPACE_IMAGES = [
+  "https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=2694&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=2670&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=2574&auto=format&fit=crop",
+];
 
 export default function TheSpace() {
   const containerRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLDivElement>(null);
+  const [currentImage, setCurrentImage] = useState(0);
+
+  const nextImage = () => setCurrentImage((prev) => (prev + 1) % SPACE_IMAGES.length);
+  const prevImage = () => setCurrentImage((prev) => (prev - 1 + SPACE_IMAGES.length) % SPACE_IMAGES.length);
 
   useGSAP(() => {
     const tl = gsap.timeline({
@@ -75,20 +86,54 @@ export default function TheSpace() {
           </div>
         </div>
 
-        {/* Image Side */}
-        <div ref={imageRef} className="relative h-[600px] rounded-t-full rounded-b-[2rem] overflow-hidden shadow-2xl shadow-casa-pink-200/50 group border-4 border-casa-cream">
-          <img 
-            src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=2694&auto=format&fit=crop" 
-            alt="Interior aconchegante e iluminado" 
-            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-casa-cream via-transparent to-transparent opacity-80" />
-          
-          {/* Floating Label */}
-          <div className="absolute bottom-8 right-8 bg-white/90 backdrop-blur-md px-6 py-3 rounded-full shadow-lg">
-            <span className="font-serif text-casa-accent italic text-sm">
-              Rua das Flores, 123 — São Paulo
-            </span>
+        {/* Image Side - Gallery */}
+        <div ref={imageRef} className="flex flex-col gap-6">
+          <div className="relative h-[500px] md:h-[600px] rounded-t-full rounded-b-[2rem] overflow-hidden shadow-2xl shadow-casa-pink-200/50 group border-4 border-casa-cream">
+            <img 
+              key={currentImage}
+              src={SPACE_IMAGES[currentImage]} 
+              alt="Interior aconchegante e iluminado" 
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 animate-in fade-in duration-500"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-casa-cream via-transparent to-transparent opacity-80 pointer-events-none" />
+            
+            {/* Gallery Controls */}
+            <div className="absolute inset-0 flex items-center justify-between px-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <button 
+                onClick={prevImage}
+                className="w-12 h-12 rounded-full bg-white/80 backdrop-blur-sm flex items-center justify-center text-casa-accent hover:bg-white hover:scale-110 transition-all shadow-lg"
+              >
+                <ChevronLeft className="w-6 h-6" />
+              </button>
+              <button 
+                onClick={nextImage}
+                className="w-12 h-12 rounded-full bg-white/80 backdrop-blur-sm flex items-center justify-center text-casa-accent hover:bg-white hover:scale-110 transition-all shadow-lg"
+              >
+                <ChevronRight className="w-6 h-6" />
+              </button>
+            </div>
+            
+            {/* Floating Label */}
+            <div className="absolute bottom-8 right-8 bg-white/90 backdrop-blur-md px-6 py-3 rounded-full shadow-lg pointer-events-none">
+              <span className="font-serif text-casa-accent italic text-sm">
+                Rua das Flores, 123 — São Paulo
+              </span>
+            </div>
+          </div>
+
+          {/* Thumbnails */}
+          <div className="flex justify-center gap-4">
+            {SPACE_IMAGES.map((img, idx) => (
+              <button 
+                key={idx}
+                onClick={() => setCurrentImage(idx)}
+                className={`relative w-20 h-20 rounded-2xl overflow-hidden border-2 transition-all duration-300 ${
+                  currentImage === idx ? 'border-casa-accent scale-110 shadow-md' : 'border-transparent opacity-60 hover:opacity-100'
+                }`}
+              >
+                <img src={img} alt={`Thumbnail ${idx + 1}`} className="w-full h-full object-cover" />
+              </button>
+            ))}
           </div>
         </div>
 

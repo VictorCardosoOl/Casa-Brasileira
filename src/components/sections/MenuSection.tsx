@@ -209,11 +209,11 @@ export default function MenuSection() {
                 </div>
 
                 {/* Central Image */}
-                <div ref={imageRef} className="lg:col-span-4 relative aspect-[3/4] rounded-t-full rounded-b-full overflow-hidden shadow-2xl shadow-casa-pink-200/50 border-8 border-casa-cream z-10 order-1 lg:order-2">
+                <div ref={imageRef} className="lg:col-span-4 relative aspect-[3/4] rounded-t-full rounded-b-full overflow-hidden shadow-2xl shadow-casa-pink-200/50 border-8 border-casa-cream z-10 order-1 lg:order-2 group">
                   <img 
                     src={WEEKLY_MENU[activeDay].image} 
                     alt={WEEKLY_MENU[activeDay].dish}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                 </div>
 

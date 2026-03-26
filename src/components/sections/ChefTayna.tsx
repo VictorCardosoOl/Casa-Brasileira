@@ -35,6 +35,16 @@ export default function ChefTayna() {
 
   return (
     <section id="chef" ref={containerRef} className="py-32 px-6 md:pl-32 md:pr-12 bg-casa-cream relative overflow-hidden">
+      {/* Noise Texture */}
+      <div className="absolute inset-0 pointer-events-none opacity-[0.03] mix-blend-multiply z-0">
+        <svg className="w-full h-full">
+          <filter id="noise-chef">
+            <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch" />
+          </filter>
+          <rect width="100%" height="100%" filter="url(#noise-chef)" />
+        </svg>
+      </div>
+
       {/* Massive Background Text */}
       <div className="absolute top-20 left-1/2 -translate-x-1/2 w-full text-center z-0 pointer-events-none">
         <h2 className="font-editorial text-[18vw] leading-[0.8] text-casa-accent/5 tracking-tighter whitespace-nowrap">
