@@ -1,122 +1,98 @@
-import { ArrowRight, Facebook, Instagram, MessageCircle } from 'lucide-react';
+import { Instagram, Send } from 'lucide-react';
 
 export default function Footer() {
   return (
-    <footer className="relative bg-stone-950 text-stone-200 overflow-hidden py-24 px-6 md:px-12">
-      {/* Noise Texture */}
-      <div className="absolute inset-0 pointer-events-none opacity-[0.05] mix-blend-overlay z-0">
-        <svg className="w-full h-full">
-          <filter id="noise">
-            <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch" />
-          </filter>
-          <rect width="100%" height="100%" filter="url(#noise)" />
-        </svg>
-      </div>
+    <footer className="relative bg-[#EAE6DF] py-12 px-6 md:px-12 min-h-[600px] flex flex-col justify-between overflow-hidden">
+      {/* Tile Background */}
+      <div 
+        className="absolute inset-0 z-0 opacity-[0.15] mix-blend-multiply"
+        style={{
+          backgroundImage: `url('https://images.unsplash.com/photo-1518640467707-6811f4a6ab73?q=80&w=1000&auto=format&fit=crop')`,
+          backgroundSize: '250px',
+          backgroundRepeat: 'repeat',
+        }}
+      />
 
-      {/* Background Typography */}
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full text-center pointer-events-none select-none z-0 overflow-hidden">
-        <span className="font-editorial text-[18vw] leading-[0.8] text-stone-900 opacity-40 whitespace-nowrap block translate-y-[20%]">
-          casa brasileira
-        </span>
-      </div>
-
-      <div className="relative z-10 max-w-screen-2xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 border-t border-stone-800 pt-16">
-          
-          {/* Col 1: Brand Identity */}
-          <div className="flex flex-col gap-6">
-            <div>
-              <h2 className="font-serif text-5xl text-white mb-2 tracking-tight">CB.</h2>
-              <p className="font-serif italic text-stone-400 text-lg">
-                Alta cozinha do cotidiano.
-              </p>
-            </div>
-            <p className="text-stone-400 text-sm font-light leading-relaxed max-w-xs opacity-80">
-              Resgatando memórias através do sabor, em um ambiente onde cada detalhe conta uma história.
-            </p>
-          </div>
-
-          {/* Col 2: Location & CTA */}
-          <div className="flex flex-col gap-8">
-            <span className="text-xs font-bold uppercase tracking-widest text-stone-400/60">
-              Visite-nos
-            </span>
-            <div className="flex flex-col gap-6">
-              <p className="text-stone-200 font-light leading-relaxed">
-                Rua das Flores, 123<br/>
-                Jardins, São Paulo - SP
-              </p>
-              <a 
-                href="https://maps.google.com" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="group flex items-center gap-3 text-white hover:text-stone-400 transition-colors w-fit"
-              >
-                <span className="border-b border-white/30 group-hover:border-stone-400 pb-1 text-sm tracking-wide">
-                  Ver no mapa
-                </span>
-                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-              </a>
-            </div>
-          </div>
-
-          {/* Col 3: Social */}
-          <div className="flex flex-col gap-8">
-            <span className="text-xs font-bold uppercase tracking-widest text-stone-400/60">
-              Conecte-se
-            </span>
+      <div className="relative z-10 grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8 flex-grow items-center">
+        
+        {/* Left: Form */}
+        <div className="md:col-span-6 lg:col-span-5">
+          <div className="border border-[#2B3A4A] bg-white/50 backdrop-blur-sm p-8 md:p-10 flex flex-col gap-8">
             <div className="flex flex-col gap-4">
-              <a href="#" className="flex items-center gap-3 text-stone-400 hover:text-white transition-colors group">
-                <Instagram className="w-5 h-5" />
-                <span className="text-sm group-hover:translate-x-1 transition-transform duration-300">@casabrasileira</span>
-              </a>
-              <a href="#" className="flex items-center gap-3 text-stone-400 hover:text-white transition-colors group">
-                <Facebook className="w-5 h-5" />
-                <span className="text-sm group-hover:translate-x-1 transition-transform duration-300">/casabrasileira</span>
-              </a>
-              <a href="#" className="flex items-center gap-3 text-stone-400 hover:text-white transition-colors group">
-                <MessageCircle className="w-5 h-5" />
-                <span className="text-sm group-hover:translate-x-1 transition-transform duration-300">(11) 99999-9999</span>
-              </a>
-            </div>
-          </div>
-
-          {/* Col 4: Navigation & Credits */}
-          <div className="flex flex-col justify-between h-full gap-8">
-            <div className="flex flex-col gap-8">
-              <span className="text-xs font-bold uppercase tracking-widest text-stone-400/60">
-                Menu
-              </span>
-              <nav className="flex flex-col gap-3">
-                {[
-                  { label: 'Home', href: '#home' },
-                  { label: 'Conceito', href: '#concept' },
-                  { label: 'Espaço', href: '#space' },
-                  { label: 'Menu', href: '#menu' },
-                  { label: 'Chef', href: '#chef' }
-                ].map((item) => (
-                  <a 
-                    key={item.label} 
-                    href={item.href}
-                    className="text-stone-400 hover:text-white hover:translate-x-2 transition-all duration-300 w-fit text-sm"
-                  >
-                    {item.label}
-                  </a>
-                ))}
-              </nav>
-            </div>
-            
-            <div className="pt-8 border-t border-stone-800 lg:border-none lg:pt-0 opacity-40 hover:opacity-100 transition-opacity duration-500">
-              <p className="text-[10px] uppercase tracking-widest text-stone-400">
-                &copy; {new Date().getFullYear()} Casa Brasileira.
-              </p>
-              <p className="text-[10px] uppercase tracking-widest text-stone-500 mt-2">
-                Crafted by <span className="text-stone-300">Studio</span>
+              <h3 className="font-sans font-bold text-[#2B3A4A] uppercase tracking-wider text-xl">
+                Ficou com dúvidas?
+              </h3>
+              <p className="font-sans text-[10px] md:text-xs uppercase tracking-widest text-[#2B3A4A]/80 leading-relaxed max-w-sm">
+                Teremos o prazer em responder a cada uma delas. Entre em contato conosco.
               </p>
             </div>
-          </div>
 
+            <form className="flex flex-col gap-6">
+              <input 
+                type="text" 
+                placeholder="SEU NOME" 
+                className="w-full bg-transparent border-b border-[#2B3A4A]/30 pb-2 text-sm focus:outline-none focus:border-[#2B3A4A] placeholder:text-[#2B3A4A]/50 uppercase tracking-widest text-[#2B3A4A]"
+              />
+              <input 
+                type="tel" 
+                placeholder="NÚMERO DE TELEFONE" 
+                className="w-full bg-transparent border-b border-[#2B3A4A]/30 pb-2 text-sm focus:outline-none focus:border-[#2B3A4A] placeholder:text-[#2B3A4A]/50 uppercase tracking-widest text-[#2B3A4A]"
+              />
+              <input 
+                type="text" 
+                placeholder="SUA DÚVIDA/COMENTÁRIO" 
+                className="w-full bg-transparent border-b border-[#2B3A4A]/30 pb-2 text-sm focus:outline-none focus:border-[#2B3A4A] placeholder:text-[#2B3A4A]/50 uppercase tracking-widest text-[#2B3A4A]"
+              />
+              <button 
+                type="button"
+                className="text-xs font-bold uppercase tracking-widest text-[#2B3A4A] text-left hover:text-casa-accent transition-colors mt-2 w-fit"
+              >
+                Enviar
+              </button>
+            </form>
+          </div>
         </div>
+
+        {/* Middle: Links & Socials */}
+        <div className="md:col-span-2 lg:col-span-2 flex flex-col justify-center gap-8 md:pl-8">
+          <nav className="flex flex-col gap-6">
+            <a href="#about" className="font-sans font-bold uppercase tracking-widest text-[#2B3A4A] text-sm hover:text-casa-accent transition-colors">
+              Sobre nós
+            </a>
+            <a href="#menu" className="font-sans font-bold uppercase tracking-widest text-[#2B3A4A] text-sm hover:text-casa-accent transition-colors">
+              Menu
+            </a>
+            <a href="#contact" className="font-sans font-bold uppercase tracking-widest text-[#2B3A4A] text-sm hover:text-casa-accent transition-colors">
+              Contatos
+            </a>
+          </nav>
+          <div className="flex gap-4">
+            <a href="#" className="w-10 h-10 rounded-full border border-[#2B3A4A] flex items-center justify-center text-[#2B3A4A] hover:bg-[#2B3A4A] hover:text-white transition-all">
+              <Send className="w-4 h-4 -ml-1" />
+            </a>
+            <a href="#" className="w-10 h-10 rounded-full border border-[#2B3A4A] flex items-center justify-center text-[#2B3A4A] hover:bg-[#2B3A4A] hover:text-white transition-all">
+              <Instagram className="w-4 h-4" />
+            </a>
+          </div>
+        </div>
+
+        {/* Right: Huge Text */}
+        <div className="md:col-span-4 lg:col-span-5 flex flex-col justify-center items-end text-right mt-12 md:mt-0">
+          <h2 className="font-editorial text-[22vw] md:text-[9vw] lg:text-[10vw] leading-[0.8] text-casa-accent uppercase tracking-tighter">
+            CASA
+          </h2>
+          <h2 className="font-editorial text-[22vw] md:text-[9vw] lg:text-[10vw] leading-[0.8] text-casa-accent uppercase tracking-tighter flex items-baseline gap-2 md:gap-4">
+            <span className="font-sans font-light text-[12vw] md:text-[5vw] lg:text-[6vw]">&</span> BRASIL
+          </h2>
+        </div>
+
+      </div>
+
+      {/* Bottom Text */}
+      <div className="relative z-10 mt-16">
+        <p className="font-sans font-bold uppercase tracking-widest text-[#2B3A4A] text-sm md:text-base">
+          Esperamos sua visita!
+        </p>
       </div>
     </footer>
   );
