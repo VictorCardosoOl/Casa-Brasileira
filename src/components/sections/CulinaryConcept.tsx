@@ -57,7 +57,7 @@ export default function CulinaryConcept() {
           </div>
 
           {/* Image */}
-          <div className="concept-content relative aspect-[4/5] rounded-t-full rounded-b-[2rem] overflow-hidden shadow-2xl shadow-casa-pink-200/50 group border-4 border-casa-cream">
+          <div className="concept-content relative aspect-[4/5] overflow-hidden shadow-2xl shadow-casa-pink-200/50 group border-4 border-casa-cream">
             <img 
               src="https://images.unsplash.com/photo-1543339308-43e59d6b73a6?q=80&w=2670&auto=format&fit=crop" 
               alt="Ingredientes frescos" 

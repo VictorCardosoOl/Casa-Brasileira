@@ -44,9 +44,9 @@ export default function Hero() {
       <div className="relative w-full max-w-5xl mx-auto mt-4">
         <div 
           ref={imageRef} 
-          className="p-2 md:p-3 rounded-[2.5rem] border border-casa-accent/20 bg-casa-cream/50 backdrop-blur-sm shadow-2xl shadow-casa-pink-200/40"
+          className="p-2 md:p-3 border border-casa-accent/20 bg-casa-cream/50 backdrop-blur-sm shadow-2xl shadow-casa-pink-200/40"
         >
-          <div className="w-full aspect-[4/3] md:aspect-[21/9] rounded-[2rem] overflow-hidden">
+          <div className="w-full aspect-[4/3] md:aspect-[21/9] overflow-hidden">
             <img 
               src="https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=2574&auto=format&fit=crop" 
               alt="Casa Brasileira" 

@@ -88,7 +88,7 @@ export default function TheSpace() {
 
         {/* Image Side - Gallery */}
         <div ref={imageRef} className="flex flex-col gap-6">
-          <div className="relative h-[500px] md:h-[600px] rounded-t-full rounded-b-[2rem] overflow-hidden shadow-2xl shadow-casa-pink-200/50 group border-4 border-casa-cream">
+          <div className="relative h-[500px] md:h-[600px] overflow-hidden shadow-2xl shadow-casa-pink-200/50 group border-4 border-casa-cream">
             <img 
               key={currentImage}
               src={SPACE_IMAGES[currentImage]} 
@@ -114,7 +114,7 @@ export default function TheSpace() {
             </div>
             
             {/* Floating Label */}
-            <div className="absolute bottom-8 right-8 bg-white/90 backdrop-blur-md px-6 py-3 rounded-full shadow-lg pointer-events-none">
+            <div className="absolute bottom-8 right-8 bg-white/90 backdrop-blur-md px-6 py-3 rounded-none shadow-lg pointer-events-none">
               <span className="font-serif text-casa-accent italic text-sm">
                 Rua das Flores, 123 — São Paulo
               </span>
@@ -127,7 +127,7 @@ export default function TheSpace() {
               <button 
                 key={idx}
                 onClick={() => setCurrentImage(idx)}
-                className={`relative w-20 h-20 rounded-2xl overflow-hidden border-2 transition-all duration-300 ${
+                className={`relative w-20 h-20 overflow-hidden border-2 transition-all duration-300 ${
                   currentImage === idx ? 'border-casa-accent scale-110 shadow-md' : 'border-transparent opacity-60 hover:opacity-100'
                 }`}
               >

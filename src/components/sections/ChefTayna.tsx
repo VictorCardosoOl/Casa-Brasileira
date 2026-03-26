@@ -55,7 +55,7 @@ export default function ChefTayna() {
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24 items-center relative z-10 mt-24">
         
         {/* Image Side - Artistic Portrait */}
-        <div ref={imageRef} className="relative aspect-[3/4] md:aspect-[4/5] rounded-t-full rounded-b-[2rem] overflow-hidden shadow-2xl shadow-casa-pink-200/50 group order-2 lg:order-1 border-4 border-casa-cream">
+        <div ref={imageRef} className="relative aspect-[3/4] md:aspect-[4/5] overflow-hidden shadow-2xl shadow-casa-pink-200/50 group order-2 lg:order-1 border-4 border-casa-cream">
           <img 
             src="https://images.unsplash.com/photo-1583394293214-28ded15ee548?q=80&w=2680&auto=format&fit=crop" 
             alt="Chef Tayna Cristina" 

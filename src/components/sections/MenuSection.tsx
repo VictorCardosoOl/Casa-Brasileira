@@ -20,7 +20,7 @@ const WEEKLY_MENU = [
     dish: 'Virado à Paulista',
     description: 'O clássico paulistano elevado à perfeição. Tutu de feijão cremoso, bisteca suína marinada por 12h, ovo estalado com gema mole, couve manteiga crocante e banana frita sequinha.',
     tags: ['Porco & Feijão', 'Tradição'],
-    image: 'https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?q=80&w=2513&auto=format&fit=crop', 
+    image: 'https://pngimg.com/d/food_PNG43.png', 
   },
   {
     id: 'terca',
@@ -28,7 +28,7 @@ const WEEKLY_MENU = [
     dish: 'Bife à Rolê',
     description: 'Memória afetiva em cada garfada. Coxão mole macio recheado com bacon artesanal e cenoura, cozido lentamente em molho de tomate rústico e vinho tinto. Acompanha purê de batatas aveludado.',
     tags: ['Carne Bovinas', 'Conforto'],
-    image: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=2680&auto=format&fit=crop', 
+    image: 'https://pngimg.com/d/food_PNG107.png', 
   },
   {
     id: 'quarta',
@@ -36,7 +36,7 @@ const WEEKLY_MENU = [
     dish: 'Feijoada Completa',
     description: 'A rainha da semana. Seleção de carnes nobres, feijão preto caldoso, farofa de alho crocante, laranja bahia e aquele torresmo que faz barulho. Uma experiência de texturas e sabores.',
     tags: ['Porco & Feijão', 'Brasilidade'],
-    image: 'https://images.unsplash.com/photo-1565557623262-b51c2513a641?q=80&w=2671&auto=format&fit=crop', 
+    image: 'https://pngimg.com/d/food_PNG53.png', 
   },
   {
     id: 'quinta',
@@ -44,7 +44,7 @@ const WEEKLY_MENU = [
     dish: 'Massas Artesanais',
     description: 'Homenagem à influência italiana no Brasil. Massas frescas feitas na casa, com molhos que variam semanalmente: do ragu de costela ao pesto de manjericão fresco da horta.',
     tags: ['Trigo & Ovos', 'Artesanal'],
-    image: 'https://images.unsplash.com/photo-1551183053-bf91a1d81141?q=80&w=2732&auto=format&fit=crop', 
+    image: 'https://pngimg.com/d/food_PNG123.png', 
   },
   {
     id: 'sexta',
@@ -52,7 +52,7 @@ const WEEKLY_MENU = [
     dish: 'Peixes & Frutos do Mar',
     description: 'Leveza para o fim de semana. Peixe fresco do dia, preparado com crosta de ervas ou moqueca capixaba, acompanhado de pirão e arroz de coco.',
     tags: ['Pescados', 'Frescor'],
-    image: 'https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?q=80&w=2670&auto=format&fit=crop', 
+    image: 'https://pngimg.com/d/food_PNG134.png', 
   },
 ];
 
@@ -209,11 +209,11 @@ export default function MenuSection() {
                 </div>
 
                 {/* Central Image */}
-                <div ref={imageRef} className="lg:col-span-4 relative aspect-[3/4] rounded-t-full rounded-b-full overflow-hidden shadow-2xl shadow-casa-pink-200/50 border-8 border-casa-cream z-10 order-1 lg:order-2 group">
+                <div ref={imageRef} className="lg:col-span-4 relative aspect-square z-10 order-1 lg:order-2 group flex items-center justify-center">
                   <img 
                     src={WEEKLY_MENU[activeDay].image} 
                     alt={WEEKLY_MENU[activeDay].dish}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    className="w-full h-full object-contain drop-shadow-2xl transition-transform duration-700 group-hover:scale-110"
                   />
                 </div>
 
