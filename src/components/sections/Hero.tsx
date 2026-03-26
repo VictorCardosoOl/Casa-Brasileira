@@ -15,7 +15,7 @@ export default function Hero() {
     tl.from(titleRef.current, { y: 50, opacity: 0, duration: 1.2, delay: 0.2 })
       .from(subtitleRef.current, { y: 20, opacity: 0, duration: 0.8 }, '-=0.8')
       .from(imageRef.current, { y: 40, opacity: 0, duration: 1.2 }, '-=0.6')
-      .from(scriptRef.current, { opacity: 0, rotation: 0, scale: 0.8, duration: 0.8 }, '-=0.4');
+      .from(scriptRef.current, { opacity: 0, rotation: 15, scale: 0.5, duration: 1.5, ease: 'elastic.out(1, 0.4)' }, '-=0.4');
   }, { scope: containerRef });
 
   return (
