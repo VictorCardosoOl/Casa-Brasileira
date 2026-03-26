@@ -1,42 +1,18 @@
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { useRef } from 'react';
+import { Instagram, Facebook } from 'lucide-react';
 
 export default function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const textRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLDivElement>(null);
-  const contentRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
-    const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
-
-    tl.from(textRef.current, {
-      y: 100,
-      opacity: 0,
-      duration: 1.5,
-    })
-    .from(imageRef.current, {
+    gsap.from(imageRef.current, {
       y: 50,
       opacity: 0,
-      scale: 0.9,
       duration: 1.5,
-    }, '-=1')
-    .from(contentRef.current, {
-      y: 30,
-      opacity: 0,
-      duration: 1,
-    }, '-=1');
-
-    // Parallax
-    gsap.to(textRef.current, {
-      y: -150,
-      scrollTrigger: {
-        trigger: containerRef.current,
-        start: 'top top',
-        end: 'bottom top',
-        scrub: true,
-      },
+      ease: 'power3.out',
     });
   }, { scope: containerRef });
 
@@ -44,38 +20,38 @@ export default function Hero() {
     <section 
       id="home"
       ref={containerRef} 
-      className="relative min-h-screen w-full overflow-hidden flex flex-col items-center justify-center bg-casa-cream pt-24 md:pl-32 px-6"
+      className="relative w-full min-h-screen overflow-hidden flex flex-col items-center justify-center bg-casa-cream pt-32 pb-24 px-6 lg:pl-32 lg:pr-12"
     >
       {/* Massive Background Text */}
-      <div 
-        ref={textRef}
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full text-center z-0 pointer-events-none"
-      >
-        <h1 className="font-serif text-[20vw] leading-[0.8] text-casa-accent/10 tracking-tighter whitespace-nowrap">
-          CASA<br/>BRASILEIRA
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full text-center z-0 pointer-events-none flex flex-col items-center justify-center">
+        <h1 className="font-serif text-[18vw] leading-[0.75] text-casa-accent/20 tracking-tighter whitespace-nowrap">
+          BRASILEIRA
         </h1>
       </div>
 
-      {/* Central Content */}
-      <div className="relative z-10 flex flex-col items-center w-full max-w-5xl mx-auto mt-12">
-        <div ref={contentRef} className="text-center mb-8">
-          <span className="font-sans text-xs md:text-sm font-bold tracking-[0.2em] uppercase text-casa-accent mb-4 block">
-            Alta Cozinha do Cotidiano
-          </span>
-        </div>
+      {/* Foreground Image */}
+      <div ref={imageRef} className="relative z-10 w-full max-w-4xl mt-12">
+        <img 
+          src="https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?q=80&w=2513&auto=format&fit=crop" 
+          alt="Prato Casa Brasileira" 
+          className="w-full h-auto object-contain drop-shadow-2xl"
+          style={{ maskImage: 'linear-gradient(to bottom, black 80%, transparent 100%)', WebkitMaskImage: 'linear-gradient(to bottom, black 80%, transparent 100%)' }}
+        />
+      </div>
 
-        <div ref={imageRef} className="relative w-full max-w-3xl aspect-[16/9] md:aspect-[21/9] rounded-[2rem] overflow-hidden shadow-2xl shadow-casa-pink-200/50">
-          <img 
-            src="https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=2574&auto=format&fit=crop" 
-            alt="Casa Brasileira" 
-            className="w-full h-full object-cover"
-          />
+      {/* Bottom Text */}
+      <div className="relative z-10 mt-8 flex flex-col items-center text-center gap-4">
+        <div className="flex items-center gap-4">
+          <span className="w-12 h-[1px] bg-casa-text"></span>
+          <span className="font-serif italic text-2xl text-casa-text">Tradição & Sabor</span>
+          <span className="w-12 h-[1px] bg-casa-text"></span>
         </div>
-
-        <div className="mt-12 text-center max-w-xl bg-casa-cream/80 backdrop-blur-sm p-6 rounded-2xl">
-          <p className="font-serif text-2xl md:text-3xl text-casa-text italic leading-relaxed">
-            "Resgatando memórias através do sabor, em um ambiente onde cada detalhe conta uma história."
-          </p>
+        <h2 className="font-sans text-2xl md:text-4xl font-black uppercase tracking-widest text-casa-text">
+          SEMPRE UMA REFEIÇÃO PERFEITA
+        </h2>
+        <div className="flex items-center gap-4 mt-4 text-casa-text">
+          <Instagram className="w-5 h-5 cursor-pointer hover:text-casa-accent transition-colors" />
+          <Facebook className="w-5 h-5 cursor-pointer hover:text-casa-accent transition-colors" />
         </div>
       </div>
     </section>
