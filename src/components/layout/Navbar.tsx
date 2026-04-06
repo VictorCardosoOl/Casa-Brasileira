@@ -53,7 +53,7 @@ export default function Navbar() {
         display: 'none'
       });
     }
-  }, [isMobileMenuOpen]);
+  }, { dependencies: [isMobileMenuOpen] });
 
   // Lock body scroll when menu is open
   useEffect(() => {
@@ -157,7 +157,7 @@ export default function Navbar() {
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="flex items-center gap-3 text-[10px] font-sans font-medium tracking-[0.2em] text-casa-text uppercase hover:text-casa-accent transition-colors z-50 relative"
             >
-              <span className="hidden md:block">{isMobileMenuOpen ? 'FECHAR' : 'MENU'}</span>
+              <span>{isMobileMenuOpen ? 'FECHAR' : 'MENU'}</span>
               <div className="w-2.5 h-2.5 rounded-full bg-casa-accent"></div>
             </button>
           </div>
@@ -196,8 +196,8 @@ export default function Navbar() {
       {/* Mobile Menu Overlay */}
       <div 
         ref={mobileMenuRef}
-        className="fixed inset-0 bg-casa-cream z-40 hidden flex-col items-center justify-center"
-        style={{ transform: 'translateX(100%)' }}
+        className="fixed inset-0 bg-casa-cream z-40 flex-col items-center justify-center"
+        style={{ transform: 'translateX(100%)', display: 'none' }}
       >
         <div className="flex flex-col items-center gap-8">
           {menuItems.map((item) => (
