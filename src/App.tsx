@@ -3,6 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './components/layout/Navbar';
 import SmoothScrollWrapper from './components/layout/SmoothScrollWrapper';
 import Hero from './components/sections/Hero';
@@ -12,8 +13,9 @@ import MenuSection from './components/sections/MenuSection';
 import ChefTayna from './components/sections/ChefTayna';
 import MapSection from './components/sections/MapSection';
 import Footer from './components/sections/Footer';
+import CardapioDigital from './pages/CardapioDigital';
 
-export default function App() {
+function HomePage() {
   return (
     <SmoothScrollWrapper>
       <Navbar />
@@ -27,5 +29,16 @@ export default function App() {
       </main>
       <Footer />
     </SmoothScrollWrapper>
+  );
+}
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/cardapio" element={<CardapioDigital />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
