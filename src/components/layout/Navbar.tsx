@@ -2,6 +2,7 @@ import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { Menu, X } from 'lucide-react';
 import { useRef, useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { useScrollDirection } from '../hooks/useScrollDirection';
 import { cn } from '../../lib/utils';
 
@@ -149,6 +150,12 @@ export default function Navbar() {
 
           {/* Right: Navigation Actions */}
           <div ref={linksRef} className="flex items-center justify-end gap-8">
+            <Link 
+              to="/cardapio" 
+              className="hidden md:block text-[10px] font-sans font-medium tracking-[0.2em] text-casa-text uppercase hover:text-casa-accent transition-colors"
+            >
+              CARDÁPIO
+            </Link>
             <span className="hidden md:block text-[10px] font-sans font-medium tracking-[0.2em] text-casa-text-light uppercase cursor-pointer hover:text-casa-accent transition-colors">
               PORTUGUÊS
             </span>
@@ -211,6 +218,14 @@ export default function Navbar() {
               {item.label}
             </a>
           ))}
+          <Link 
+            to="/cardapio" 
+            className="mobile-link flex items-center gap-4 font-editorial text-3xl text-casa-text hover:text-casa-accent transition-colors"
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            <span className="font-sans text-sm tracking-widest text-casa-accent">QR</span>
+            Cardápio Digital
+          </Link>
           <button 
             className="mobile-link mt-8 px-8 py-3 bg-casa-accent text-white rounded-full font-sans text-xs font-bold uppercase tracking-widest"
             onClick={() => setIsMobileMenuOpen(false)}
