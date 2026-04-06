@@ -1,6 +1,9 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { useDynamicTitle } from '../hooks/useDynamicTitle';
+import { useGoogleSheetsMenu } from '../hooks/useGoogleSheetsMenu';
+import FadeIn from '../components/animations/FadeIn';
 
-const MENU_ITEMS = [
+const FALLBACK_MENU = [
   {
     category: "Entradas",
     items: [
@@ -26,6 +29,10 @@ const MENU_ITEMS = [
 ];
 
 export default function CardapioDigital() {
+  useDynamicTitle("Menu Digital");
+  const { menu, loading } = useGoogleSheetsMenu(FALLBACK_MENU);
+  const [lang, setLang] = useState<'PT' | 'EN' | 'ES'>('PT');
+
   // Garante que a página inicie no topo, sem animações complexas de scroll
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -33,53 +40,79 @@ export default function CardapioDigital() {
 
   return (
     <div className="min-h-screen bg-casa-cream px-6 py-12 selection:bg-casa-accent/20 selection:text-casa-accent">
+      
+      {/* Language Toggle */}
+      <div className="flex justify-center gap-4 mb-8">
+        {['PT', 'EN', 'ES'].map((l) => (
+          <button 
+            key={l}
+            onClick={() => setLang(l as any)}
+            className={`font-sans text-[10px] tracking-[0.2em] transition-colors ${lang === l ? 'text-casa-accent font-bold' : 'text-casa-text-light hover:text-casa-text'}`}
+          >
+            {l}
+          </button>
+        ))}
+      </div>
+
       {/* Header Simples do Cardápio */}
-      <header className="flex flex-col items-center justify-center mb-16 text-center">
-        <h1 className="font-editorial text-4xl text-casa-text uppercase tracking-widest">
-          CASA BRASILEIRA
-        </h1>
-        <p className="font-sans text-[10px] tracking-[0.3em] text-casa-text-light uppercase mt-2">
-          Menu Digital
-        </p>
-      </header>
+      <FadeIn>
+        <header className="flex flex-col items-center justify-center mb-16 text-center">
+          <h1 className="font-editorial text-4xl text-casa-text uppercase tracking-widest">
+            CASA BRASILEIRA
+          </h1>
+          <p className="font-sans text-[10px] tracking-[0.3em] text-casa-text-light uppercase mt-2">
+            {lang === 'EN' ? 'Digital Menu' : lang === 'ES' ? 'Menú Digital' : 'Menu Digital'}
+          </p>
+        </header>
+      </FadeIn>
 
       {/* Lista de Itens */}
       <main className="max-w-2xl mx-auto flex flex-col gap-12">
-        {MENU_ITEMS.map((section, idx) => (
-          <section key={idx} className="flex flex-col gap-6">
-            <h2 className="font-editorial text-2xl text-casa-accent uppercase tracking-widest border-b border-casa-text/10 pb-2 text-center">
-              {section.category}
-            </h2>
-            
-            <div className="flex flex-col gap-6">
-              {section.items.map((item, itemIdx) => (
-                <div key={itemIdx} className="flex flex-col gap-1">
-                  <div className="flex justify-between items-end gap-4">
-                    <h3 className="font-sans text-xs font-semibold uppercase tracking-[0.1em] text-casa-text">
-                      {item.name}
-                    </h3>
-                    <div className="flex-grow border-b border-dotted border-casa-text/20 mb-1"></div>
-                    <span className="font-sans text-xs font-semibold tracking-[0.1em] text-casa-text">
-                      R$ {item.price}
-                    </span>
-                  </div>
-                  <p className="font-sans text-[10px] uppercase tracking-[0.1em] text-casa-text-light/80 leading-relaxed">
-                    {item.description}
-                  </p>
+        {loading ? (
+          <div className="text-center font-sans text-xs tracking-widest text-casa-text-light uppercase py-12">
+            Carregando menu...
+          </div>
+        ) : (
+          menu.map((section, idx) => (
+            <FadeIn key={idx} delay={idx * 0.1}>
+              <section className="flex flex-col gap-6">
+                <h2 className="font-editorial text-2xl text-casa-accent uppercase tracking-widest border-b border-casa-text/10 pb-2 text-center">
+                  {section.category}
+                </h2>
+                
+                <div className="flex flex-col gap-6">
+                  {section.items.map((item, itemIdx) => (
+                    <div key={itemIdx} className="flex flex-col gap-1">
+                      <div className="flex justify-between items-end gap-4">
+                        <h3 className="font-sans text-xs font-semibold uppercase tracking-[0.1em] text-casa-text">
+                          {item.name}
+                        </h3>
+                        <div className="flex-grow border-b border-dotted border-casa-text/20 mb-1"></div>
+                        <span className="font-sans text-xs font-semibold tracking-[0.1em] text-casa-text whitespace-nowrap">
+                          {item.price.includes('R$') ? item.price : `R$ ${item.price}`}
+                        </span>
+                      </div>
+                      <p className="font-sans text-[10px] uppercase tracking-[0.1em] text-casa-text-light/80 leading-relaxed">
+                        {item.description}
+                      </p>
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
-          </section>
-        ))}
+              </section>
+            </FadeIn>
+          ))
+        )}
       </main>
 
       {/* Footer Simples */}
-      <footer className="mt-20 text-center border-t border-casa-text/10 pt-8">
-        <p className="font-sans text-[8px] uppercase tracking-[0.2em] text-casa-text-light">
-          Taxa de serviço de 10% não inclusa.<br/>
-          Se tiver alguma restrição alimentar, informe o garçom.
-        </p>
-      </footer>
+      <FadeIn delay={0.3}>
+        <footer className="mt-20 text-center border-t border-casa-text/10 pt-8">
+          <p className="font-sans text-[8px] uppercase tracking-[0.2em] text-casa-text-light">
+            {lang === 'EN' ? '10% service charge not included.' : lang === 'ES' ? 'Tasa de servicio del 10% no incluida.' : 'Taxa de serviço de 10% não inclusa.'}<br/>
+            {lang === 'EN' ? 'Please inform the waiter of any dietary restrictions.' : lang === 'ES' ? 'Si tiene alguna restricción alimentaria, informe al camarero.' : 'Se tiver alguma restrição alimentar, informe o garçom.'}
+          </p>
+        </footer>
+      </FadeIn>
     </div>
   );
 }

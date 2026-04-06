@@ -14,8 +14,11 @@ import ChefTayna from './components/sections/ChefTayna';
 import MapSection from './components/sections/MapSection';
 import Footer from './components/sections/Footer';
 import CardapioDigital from './pages/CardapioDigital';
+import { useDynamicTitle } from './hooks/useDynamicTitle';
 
 function HomePage() {
+  useDynamicTitle("Home");
+
   return (
     <SmoothScrollWrapper>
       <Navbar />
