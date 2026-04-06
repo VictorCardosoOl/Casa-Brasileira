@@ -39,9 +39,10 @@ export default function CardapioDigital() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-casa-cream px-6 py-12 selection:bg-casa-accent/20 selection:text-casa-accent">
+    <div className="min-h-screen bg-casa-cream selection:bg-casa-accent/20 selection:text-casa-accent flex flex-col">
       
-      {/* Language Toggle */}
+      <div className="flex-grow px-6 py-12">
+        {/* Language Toggle */}
       <div className="flex justify-center gap-4 mb-8">
         {['PT', 'EN', 'ES'].map((l) => (
           <button 
@@ -104,15 +105,19 @@ export default function CardapioDigital() {
         )}
       </main>
 
+      </div>
+
       {/* Footer Simples */}
-      <FadeIn delay={0.3}>
-        <footer className="mt-20 text-center border-t border-casa-text/10 pt-8">
-          <p className="font-sans text-[8px] uppercase tracking-[0.2em] text-casa-text-light">
-            {lang === 'EN' ? '10% service charge not included.' : lang === 'ES' ? 'Tasa de servicio del 10% no incluida.' : 'Taxa de serviço de 10% não inclusa.'}<br/>
-            {lang === 'EN' ? 'Please inform the waiter of any dietary restrictions.' : lang === 'ES' ? 'Si tiene alguna restricción alimentaria, informe al camarero.' : 'Se tiver alguma restrição alimentar, informe o garçom.'}
-          </p>
-        </footer>
-      </FadeIn>
+      <footer className="bg-stone-900 text-stone-400 py-12 px-6 mt-auto">
+        <FadeIn delay={0.3}>
+          <div className="text-center max-w-4xl mx-auto">
+            <p className="font-sans text-[10px] uppercase tracking-[0.2em] leading-relaxed">
+              {lang === 'EN' ? '10% service charge not included.' : lang === 'ES' ? 'Tasa de servicio del 10% no incluida.' : 'Taxa de serviço de 10% não inclusa.'}<br/>
+              {lang === 'EN' ? 'Please inform the waiter of any dietary restrictions.' : lang === 'ES' ? 'Si tiene alguna restricción alimentaria, informe al camarero.' : 'Se tiver alguma restrição alimentar, informe o garçom.'}
+            </p>
+          </div>
+        </FadeIn>
+      </footer>
     </div>
   );
 }
