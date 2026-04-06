@@ -67,7 +67,7 @@ export default function CardapioDigital() {
       </FadeIn>
 
       {/* Lista de Itens */}
-      <main className="max-w-2xl mx-auto flex flex-col gap-12">
+      <main className="max-w-4xl mx-auto flex flex-col gap-12">
         {loading ? (
           <div className="text-center font-sans text-xs tracking-widest text-casa-text-light uppercase py-12">
             Carregando menu...
@@ -80,15 +80,15 @@ export default function CardapioDigital() {
                   {section.category}
                 </h2>
                 
-                <div className="flex flex-col gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
                   {section.items.map((item, itemIdx) => (
                     <div key={itemIdx} className="flex flex-col gap-1">
                       <div className="flex justify-between items-end gap-4">
-                        <h3 className="font-sans text-xs font-semibold uppercase tracking-[0.1em] text-casa-text">
+                        <h3 className="font-sans text-xs font-bold uppercase tracking-[0.1em] text-casa-text">
                           {item.name}
                         </h3>
                         <div className="flex-grow border-b border-dotted border-casa-text/20 mb-1"></div>
-                        <span className="font-sans text-xs font-semibold tracking-[0.1em] text-casa-text whitespace-nowrap">
+                        <span className="font-sans text-xs font-semibold tracking-[0.1em] text-casa-text whitespace-nowrap text-right">
                           {item.price.includes('R$') ? item.price : `R$ ${item.price}`}
                         </span>
                       </div>
