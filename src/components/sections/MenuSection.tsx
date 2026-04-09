@@ -104,20 +104,20 @@ export default function MenuSection() {
                   {section.items.map((item, itemIdx) => (
                     <div 
                       key={itemIdx} 
-                      className="group flex flex-col gap-2 cursor-pointer"
+                      className="group flex flex-col gap-2 cursor-pointer transition-all duration-500 hover:scale-[1.02] hover:translate-x-2"
                       onMouseEnter={() => handleItemHover(true)}
                       onMouseLeave={() => handleItemHover(false)}
                     >
-                      <div className="flex justify-between items-baseline gap-4">
-                        <h4 className="font-sans text-[11px] md:text-xs font-semibold uppercase tracking-[0.2em] text-casa-text group-hover:text-casa-accent transition-colors">
+                      <div className="flex justify-between items-end gap-4">
+                        <h4 className="font-sans text-[11px] md:text-xs font-semibold uppercase tracking-[0.2em] text-casa-text group-hover:text-casa-accent group-hover:drop-shadow-[0_0_10px_rgba(217,108,49,0.4)] transition-all duration-500">
                           {item.name}
                         </h4>
-                        <div className="flex-grow border-b border-dotted border-casa-text/20 relative top-[-4px]"></div>
-                        <span className="font-sans text-[11px] md:text-xs font-semibold tracking-[0.2em] text-casa-text">
+                        <div className="flex-grow border-b border-dotted border-casa-text/20 relative top-[-4px] group-hover:border-casa-accent/30 transition-colors duration-500"></div>
+                        <span className="font-sans text-[11px] md:text-xs font-semibold tracking-[0.2em] text-casa-text group-hover:text-casa-accent transition-colors duration-500">
                           {item.price}
                         </span>
                       </div>
-                      <p className="font-sans text-[10px] uppercase tracking-[0.15em] text-casa-text-light/70 leading-relaxed max-w-[85%]">
+                      <p className="font-sans text-[10px] uppercase tracking-[0.15em] text-casa-text-light/70 leading-relaxed max-w-[85%] group-hover:text-casa-text transition-colors duration-500">
                         {item.description}
                       </p>
                     </div>
