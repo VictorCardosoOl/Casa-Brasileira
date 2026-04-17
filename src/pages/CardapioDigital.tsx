@@ -48,7 +48,7 @@ export default function CardapioDigital() {
           <button 
             key={l}
             onClick={() => setLang(l as any)}
-            className={`font-sans text-[10px] tracking-[0.2em] transition-colors ${lang === l ? 'text-casa-accent font-bold' : 'text-casa-text-light hover:text-casa-text'}`}
+            className={`font-sans text-[10px] tracking-[0.2em] px-3 py-1.5 rounded-full transition-colors ${lang === l ? 'bg-casa-accent text-white font-bold' : 'text-casa-text-light hover:text-casa-text'}`}
           >
             {l}
           </button>
